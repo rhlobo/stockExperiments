@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-
-
 class LazyDict(object):
 
     def __init__(self, factory):

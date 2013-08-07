@@ -17,7 +17,7 @@ class Test_AbstractHighChartsOptions(unittest.TestCase):
 class TestOptions(unittest.TestCase):
 
     def test_json_should_encode_json_without_errors(self):
-        options.Options().json('container_id')
+        options.Options().json()
 
     def test_add_should_throw_value_error_if_given_object_is_not_AbstractHighChartsOptions(self):
         self.assertRaises(ValueError, options.Options().add, object())
@@ -27,7 +27,7 @@ class TestOptions(unittest.TestCase):
 
     def test_add_should_begin_without_axis_and_series(self):
         c_opts = options.Options()
-        d_opts = json.loads(c_opts.json('container_id'))
+        d_opts = json.loads(c_opts.json())
         assert len(d_opts['yAxis']) == 0
         assert len(d_opts['series']) == 0
 
@@ -35,7 +35,7 @@ class TestOptions(unittest.TestCase):
         name = 'test'
         c_opts = options.Options()
         c_opts.add(options.Axis(name))
-        d_opts = json.loads(c_opts.json('container_id'))
+        d_opts = json.loads(c_opts.json())
         assert len(d_opts['yAxis']) == 1
         self.assertEqual(d_opts['yAxis'][0]['title']['text'], name)
 
@@ -43,7 +43,7 @@ class TestOptions(unittest.TestCase):
         name = 'test'
         c_opts = options.Options()
         c_opts.add(options.Series(name, []))
-        d_opts = json.loads(c_opts.json('container_id'))
+        d_opts = json.loads(c_opts.json())
         assert len(d_opts['series']) == 1
         self.assertEqual(d_opts['series'][0]['name'], name)
 
@@ -53,7 +53,7 @@ class TestOptions(unittest.TestCase):
         c_opts = options.Options()
         c_opts.add(options.Axis(name1))
         c_opts.add(options.Axis(name2))
-        d_opts = json.loads(c_opts.json('container_id'))
+        d_opts = json.loads(c_opts.json())
         assert len(d_opts['yAxis']) == 2
         self.assertEqual(d_opts['yAxis'][0]['title']['text'], name1)
         self.assertEqual(d_opts['yAxis'][1]['title']['text'], name2)
@@ -64,7 +64,7 @@ class TestOptions(unittest.TestCase):
         c_opts = options.Options()
         c_opts.add(options.Series(name1, []))
         c_opts.add(options.Series(name2, []))
-        d_opts = json.loads(c_opts.json('container_id'))
+        d_opts = json.loads(c_opts.json())
         assert len(d_opts['series']) == 2
         self.assertEqual(d_opts['series'][0]['name'], name1)
         self.assertEqual(d_opts['series'][1]['name'], name2)
@@ -101,9 +101,9 @@ class Test_PandasDataFrameJSONEncoder(unittest.TestCase):
 
     def _createDataframe(self):
         d = {
-             'one': [1., 2., 3., 4.],
-             'two': [4., 3., 2., 1.]
-            }
+            'one': [1., 2., 3., 4.],
+            'two': [4., 3., 2., 1.]
+        }
         return pandas.DataFrame(d)
 
 

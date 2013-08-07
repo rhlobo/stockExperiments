@@ -1,188 +1,220 @@
-CURRENT BACKLOG - TESTING
+ARCHIVED:
+	Finish current tests:
+	 ✔ Test existing byproduct providers using fake data @done (13-04-27 18:26)
 
-#stockExperiments/bigtempo/core.py
-DatasourceEngine:
- ✔ tags being union of infered and declared @done (13-07-02 20:43)
- ✔ tags method returns reference selection @done (13-07-02 20:47)
- ✔ for_each delegates to TagRegistrationManager register @done (13-07-02 21:03)
- ✔ for_synched delegates to TagRegistrationManager register_synched @done (13-07-02 21:03)
+	Create an MACD provider factory:
+	 ✔ Create an MACD provider prototype @done (13-04-27 20:06)
+	 ✔ Create an single MACD provider @done (13-04-29 13:43)
+	 ✔ Test the created MACD provider @done (13-04-29 21:24)
 
-#stockExperiments/bigtempo/tagselection.py
-TagRegistrationManager:
- ✔ infere_tags_for creates tag for reference @done (13-07-02 21:21)
- ✔ infere_tags_for creates tag for dependencies tags (with {}) @done (13-07-02 21:59)
- ✔ infere_tags_for creates tag for dependencies references (with {}) @done (13-07-02 21:59)
- ✔ register method does not call listener when there is no reference in selection @done (13-07-03 14:12)
- ✔ register method does call listener for every reference in selection @done (13-07-03 14:12)
- ✔ register method does call listener for every combination reference in given selections @done (13-07-03 14:12)
- ✔ register method does call listener for every new reference that matches selection @done (13-07-03 20:46)
- ✔ register method does call listener for every combination reference formed by new references that matches given selections @done (13-07-03 20:46)
- ✔ register_synched method does not call listener when there is no reference in selection @done (13-07-03 20:59)
- ✔ register_synched does call listener for every reference in selection @done (13-07-03 21:00)
- ✔ register_synched method does call listener for every synched combination reference in given selections @done (13-07-04 21:27)
- ✘ register_synched method does call listener for every new reference that matches selection @cancelled (13-07-04 21:27)
- ✘ register_synched method does call listener for every combination reference formed by new references that matches given selections @cancelled (13-07-04 21:27)
+	Create Point:
+	 ✔ Prototype a point @done (13-04-29 23:23)
+	 ✔ Create Abstract class @done (13-08-04 14:37)
+	 ✔ Create point evaluation through generator @done (13-08-04 14:37)
+	 ✔ Create example point using MACD HISTOGRAM POSITIVE CROSS @done (13-08-04 14:37)
+	 ✔ Create example point using MACD HISTOGRAM NEGATIVE CROSS @done (13-08-04 14:37)
+	 ✔ Test evaluation @done (13-08-04 14:37)
+	 ✔ Test example points @done (13-08-04 14:37)
 
-Integration Tests:
-	use cases: tag selections:
-	 ✔ nothing results in nothing @done (13-07-08 13:17)
-	 ✔ unknown tag results in nothing @done (13-07-08 13:17)
-	 ✔ tag selector results in all occurences of that tag @done (13-07-08 13:23)
-	 ✔ reference as selector results in one ocurrence @done (13-07-08 13:17)
-	 ✔ multiple tag selector results all references that have that tags in common @done (13-07-08 13:34)
-	 ✔ getting references that have certain tags but do not have others @done (13-07-08 13:38)
-	 ✔ getting all 'points' that are based on a certain raw tipe @done (13-07-08 20:44)
-	 ✔ getting all 'points' that are not based on a certain raw tipe @done (13-07-08 21:00)
-	 ✔ finding every reference that directly or indirectly uses certain datasource as dependency @done (13-07-08 21:04)
-	
-	use cases: reference selections:
-	 ✔ search for all tags for a reference @done (13-07-08 21:24)
-	 ✘ search for all tags in common between two references @cancelled (13-07-08 21:25)
-	 ✘ search for all tags in common between multiple references @cancelled (13-07-08 21:25)
-	 ✘ converting reference selection in a tag selection and filtering it by a certain tag @cancelled (13-07-08 21:25)
+	#stockExperiments/bigtempo/core.py
+	DatasourceEngine Tests:
+	 ✔ tags being union of infered and declared @done (13-07-02 20:43)
+	 ✔ tags method returns reference selection @done (13-07-02 20:47)
+	 ✔ for_each delegates to TagRegistrationManager register @done (13-07-02 21:03)
+	 ✔ for_synched delegates to TagRegistrationManager register_synched @done (13-07-02 21:03)
 
-	use cases: for_each method:
-	 ✘ for_each method can be used as loop for every registered occurence of reference @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used as loop for every registered occurence of selection @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used as loop for every registered occurence of tag @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used as loop for every combination of references @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used as loop for every combination of tags @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used as loop for every combination of selections @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used as loop for every combination of selections, references and tags @cancelled (13-07-09 13:11)
-	 ✘ for_each method can be used in combination (nested) with for_synched method @cancelled (13-07-09 13:11)
+	#stockExperiments/bigtempo/tagselection.py
+	TagRegistrationManager Tests:
+	 ✔ infere_tags_for creates tag for reference @done (13-07-02 21:21)
+	 ✔ infere_tags_for creates tag for dependencies tags (with {}) @done (13-07-02 21:59)
+	 ✔ infere_tags_for creates tag for dependencies references (with {}) @done (13-07-02 21:59)
+	 ✔ register method does not call listener when there is no reference in selection @done (13-07-03 14:12)
+	 ✔ register method does call listener for every reference in selection @done (13-07-03 14:12)
+	 ✔ register method does call listener for every combination reference in given selections @done (13-07-03 14:12)
+	 ✔ register method does call listener for every new reference that matches selection @done (13-07-03 20:46)
+	 ✔ register method does call listener for every combination reference formed by new references that matches given selections @done (13-07-03 20:46)
+	 ✔ register_synched method does not call listener when there is no reference in selection @done (13-07-03 20:59)
+	 ✔ register_synched does call listener for every reference in selection @done (13-07-03 21:00)
+	 ✔ register_synched method does call listener for every synched combination reference in given selections @done (13-07-04 21:27)
+	 ✘ register_synched method does call listener for every new reference that matches selection @cancelled (13-07-04 21:27)
+	 ✘ register_synched method does call listener for every combination reference formed by new references that matches given selections @cancelled (13-07-04 21:27)
 
-	use cases: for_synched method:
-	 ✘ for_synched method can be used as loop for every registered occurence of reference @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used as loop for every registered occurence of selection @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used as loop for every registered occurence of tag @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used as loop for every sincronized combination of references @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used as loop for every sincronized combination of selections @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used as loop for every sincronized combination of tags @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used as loop for every sincronized combination of selections, references and tags @cancelled (13-07-09 13:11)
-	 ✘ for_synched method can be used in combination (nested) with for_each method @cancelled (13-07-09 13:11)
+	Integration Tests:
+		use cases: tag selections:
+		 ✔ nothing results in nothing @done (13-07-08 13:17)
+		 ✔ unknown tag results in nothing @done (13-07-08 13:17)
+		 ✔ tag selector results in all occurences of that tag @done (13-07-08 13:23)
+		 ✔ reference as selector results in one ocurrence @done (13-07-08 13:17)
+		 ✔ multiple tag selector results all references that have that tags in common @done (13-07-08 13:34)
+		 ✔ getting references that have certain tags but do not have others @done (13-07-08 13:38)
+		 ✔ getting all 'points' that are based on a certain raw tipe @done (13-07-08 20:44)
+		 ✔ getting all 'points' that are not based on a certain raw tipe @done (13-07-08 21:00)
+		 ✔ finding every reference that directly or indirectly uses certain datasource as dependency @done (13-07-08 21:04)
+		
+		use cases: reference selections:
+		 ✔ search for all tags for a reference @done (13-07-08 21:24)
+		 ✘ search for all tags in common between two references @cancelled (13-07-08 21:25)
+		 ✘ search for all tags in common between multiple references @cancelled (13-07-08 21:25)
+		 ✘ converting reference selection in a tag selection and filtering it by a certain tag @cancelled (13-07-08 21:25)
 
+		use cases: for_each method:
+		 ✘ for_each method can be used as loop for every registered occurence of reference @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used as loop for every registered occurence of selection @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used as loop for every registered occurence of tag @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used as loop for every combination of references @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used as loop for every combination of tags @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used as loop for every combination of selections @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used as loop for every combination of selections, references and tags @cancelled (13-07-09 13:11)
+		 ✘ for_each method can be used in combination (nested) with for_synched method @cancelled (13-07-09 13:11)
 
-Datasources:
- ✔ raw_bovespa @done (13-07-11 13:36)
- ✔ raw_pct @done (13-07-11 13:36)
- ✔ raw_split @done (13-07-12 13:53)
- ☐ raw_normalization_factor
- ☐ normalized
- ☐ weekly
- ☐ monthly
- ☐ daily close
- ☐ weekly close
- ☐ monthly close
- ☐ daily macd
- ☐ weekly macd
- ☐ monthly macd
- ☐ point cross up daily macd
- ☐ point cross up weekly macd
- ☐ point cross up monthly macd
+		use cases: for_synched method:
+		 ✘ for_synched method can be used as loop for every registered occurence of reference @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used as loop for every registered occurence of selection @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used as loop for every registered occurence of tag @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used as loop for every sincronized combination of references @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used as loop for every sincronized combination of selections @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used as loop for every sincronized combination of tags @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used as loop for every sincronized combination of selections, references and tags @cancelled (13-07-09 13:11)
+		 ✘ for_synched method can be used in combination (nested) with for_each method @cancelled (13-07-09 13:11)
 
-#stockExperiments/util/dateutils.py
- ☐ week_range
- ☐ month_range
- ☐ daily_range
- ☐ range
+	Datasources Tests:
+	 ✔ raw_bovespa @done (13-07-11 13:36)
+	 ✔ raw_pct @done (13-07-11 13:36)
+	 ✔ raw_split @done (13-07-12 13:53)
+	 ✔ raw_normalization_factor @done (13-07-21 22:07)
+	 ✘ normalized @cancelled (13-08-04 13:58)
+	 ✘ weekly @cancelled (13-08-04 13:58)
+	 ✘ monthly @cancelled (13-08-04 13:58)
+	 ✘ daily close @cancelled (13-08-04 13:58)
+	 ✘ weekly close @cancelled (13-08-04 13:58)
+	 ✘ monthly close @cancelled (13-08-04 13:58)
+	 ✘ daily macd @cancelled (13-08-04 13:58)
+	 ✘ weekly macd @cancelled (13-08-04 13:58)
+	 ✘ monthly macd @cancelled (13-08-04 13:58)
+	 ✘ point cross up daily macd @cancelled (13-08-04 13:58)
+	 ✘ point cross up weekly macd @cancelled (13-08-04 13:57)
+	 ✘ point cross up monthly macd @cancelled (13-08-04 13:57)
 
-#stockExperiments/datasources/point .py
- ☐ point validates buy order out of period range
-...
+CURRENT BACKLOG:
 
---- ✄ -----------------------
+	Improve Datasource tests:
+	 ✔ Create test generator to test each datasource for returning correct interval @done (13-08-06 13:54)
+	 ✔ Create test generator to test each datasource for returning correct subinterval @done (13-08-06 13:54)
 
-SHORT TERM BACKLOG
+	Create test data for:
+	 ☐ raw_pct
+	 ☐ raw_split
+	 ☐ raw_normalization_factor
+	 ☐ normalized
+	 ☐ weekly
+	 ☐ monthly
+	 ☐ daily close
+	 ☐ weekly close
+	 ☐ monthly close
+	 ☐ daily macd
+	 ☐ weekly macd
+	 ☐ monthly macd
+	 ☐ point cross up daily macd
+	 ☐ point cross up weekly macd
+	 ☐ point cross up monthly macd
 
-Finish current tests:
+	Util Tests:
+	#stockExperiments/util/dateutils.py
+	 ☐ week_range
+	 ☐ month_range
+	 ☐ daily_range
+	 ☐ range
 
- ✔ Test existing byproduct providers using fake data @done (13-04-27 18:26)
+	Point tests:
+	#stockExperiments/datasources/point .py
+	 ☐ point validates buy order out of period range
 
-Create an MACD provider factory:
+	Publish bigtempo:
+		Extract bigtempo:
+		 ☐ Remove bigtempo dependencies
+		 ☐ Create new repo for bigtempo
+		 ☐ Extract bigtempo
+		Document bigtempo:
+			☐ Create readme
+			☐ Document dependencies
+			☐ Create example usages
+			☐ Create project backlog (features, refactorings, source, documentation, installation, support, marketing, ...)
+		Document source files:
+			☐ Name
+			☐ Description
+			☐ Logic overview
+			☐ big-O complexity
+		Make it usable:
+			☐ Create setup.py
+			☐ Publish to pypi
 
- ✔ Create an MACD provider prototype @done (13-04-27 20:06)
- ✔ Create an single MACD provider @done (13-04-29 13:43)
- ✔ Test the created MACD provider @done (13-04-29 21:24)
+	Organize the project:
+	 ☐ Import bigtempo into project
+	 ☐ Remove unecessary methods
+	 ☐ Reorganize module organization
+	 ☐ Rename datasource files, references, tags, ...
+	 ☐ Create readme
+	 ☐ Document dependencies
+	 ☐ Create example usages
+	 
+	Close project source:
+	 ☐ Create new private repo
+	 ☐ Clone the code from the public repo
 
-Create Point:
+	Datasources as plugins:
+	 ☐ Prototype and validate using metaclass for simple plugin framework http://martyalchin.com/2008/jan/10/simple-plugin-framework/
+	 ☐ Prototype and validate usage of plugins with the use of registration listeners (foreach and forsynched)
+	 ☐ Prototype and validate datasource tests when through plugins
+	 ☐ Prototype and validating reloading pluigns
+	 ☐ MIgrate datasources to plugins
+	 ☐ Correct tests
+	 ☐ Create new tests
 
- ✔ Prototype a point @done (13-04-29 23:23)
- ☐ Create Abstract class
- ☐ Create point evaluation through generator
- ☐ Create example point using MACD HISTOGRAM POSITIVE CROSS
- ☐ Create example point using MACD HISTOGRAM NEGATIVE CROSS
- ☐ Test evaluation
- ☐ Test example points
+	Create Strategy:
+		Create prototypes for approaches:
+		 ☐ Approach to receive data at once
+		 ☐ Aprroach to receive a rolling window, using object to command operations
+		 ☐ Aprroach to receive one data time at a time, using object to command operations
 
-Create Strategy:
+		 ☐ Create Abstract class
+		 ☐ Create strategy evaluation through generator
+		 ☐ Create example startegy using MACD example points
+		 ☐ Test evaluation
+		 ☐ Test example strategy
 
-	Create prototypes for approaches:
- ☐ Approach to receive data at once
- ☐ Aprroach to receive a rolling window, using object to command operations
- ☐ Aprroach to receive one data time at a time, using object to command operations
+	Create Strategy statistics:
+	 ☐ Accumulated return rate 			for periods [5, 15, 30, 60, 90, 180, 360, 720]
+	 ☐ Average strategy duration			for periods [5, 15, 30, 60, 90, 180, 360, 720]
+	 ☐ ?? Mean strategy duration			for periods [5, 15, 30, 60, 90, 180, 360, 720]
+	 ☐ ?? Different Strategy trustability score (accumulated return rate / average duration - ocilates too much? )
+	 ☐ ?? [Different] Strategy score - taking into account accumulated return rates, trustability and average duration
 
- ☐ Create Abstract class
- ☐ Create strategy evaluation through generator
- ☐ Create example startegy using MACD example points
- ☐ Test evaluation
- ☐ Test example strategy
+	Create Point statistics:
+	 ☐ Chance 	for return rate [-15..15]	for durations []
 
-Refactor everything to use only datetime:
-
- ☐ Change bovespaParser to create datetime objects
- ☐ Change everything that uses date objects to use datetime
- ☐ Change utilitariam methods at dateutils
- ☐ Avaliate creating utilitariam method that checks the use of date and makes conversions to datetime if needed
-
-Improve prodiver tests:
-
- ☐ Create raw fake data for provider testes
- ☐ Create test generator to test each provider for returning correct requested date range
- ☐ Create test generator to test each provider for returning correct requested datetime range
- ☐ Create test for provider chain manager for returning correct requested date and datetime range
-
-Create Strategy statistics:
-
- ☐ Accumulated return rate 			for periods [5, 15, 30, 60, 90, 180, 360, 720]
- ☐ Average strategy duration			for periods [5, 15, 30, 60, 90, 180, 360, 720]
- ☐ ?? Mean strategy duration			for periods [5, 15, 30, 60, 90, 180, 360, 720]
- ☐ ?? Different Strategy trustability score (accumulated return rate / average duration - ocilates too much? )
- ☐ ?? [Different] Strategy score - taking into account accumulated return rates, trustability and average duration
-
-Create Point statistics:
-
- ☐ Chance 	for return rate [-15..15]	for durations []
-
-Adapt provider memory cache:
-
+Create cache:
  ☐ Test merging and updateing data into providers
  ☐ Test data splicing when consulting cached data
  ☐ Test provider memory cache
 
-Create provider decorator/metaclass:
-
- ☐ Add logs to providers
- ☐ Set provider reference (substitute typifyes)
- ☐ Specify provider dependencies
-	 ☐ Capture dependencies specification
-	 ☐ Inject locator dependencies
-	 ☐ ?? Detect ciclical dependencies, log them, ignore provider
- ☐ ?? Use decorator to register to locator 
-
-Create tags and tag selector:
-
- ☐ ??
+Improve datasources:
+ ☐ Add logs
+ ✔ Set provider reference (substitute typifyes) @done (13-08-04 14:10)
+ ✔ Specify provider dependencies @done (13-08-04 14:10)
+	 ✔ Capture dependencies specification @done (13-08-04 14:10)
+	 ✔ Inject locator dependencies @done (13-08-04 14:10)
+ ☐ Detect ciclical dependencies, log them, ignore provider
+ ✔ ?? Use decorator to register to locator @done (13-08-04 14:11)
+ ✔ Refactored locators into engine @done (13-08-04 14:11)
 
 Create function to detect data errors:
-
  ☐ Measurement by measurement, looking out for 20% + changes
  ☐ Verify if weard changes are pontual
- ☐ Verify if potential errors are infact splits
+ ☐ Verify if potential errors are not infact splits
  ☐ Log pontential errors
 
 Clean up data when new splits are found:
-
- ☐ Create update method into providers
+ ☐ Clean up data when new splits are found
 
 --- ✄ -----------------------
 
@@ -190,31 +222,29 @@ DOCUMENTATION AND STYLE
 
 Document every function, class and methods:
 
- ☐ Logic
- ☐ Usage
+ ☐ Name
+ ☐ Description
+ ☐ Logic overview
  ☐ big-O complexity
+ ☐ Resulting columns
+ ☐ Column descriptions
+ ☐ Usage
 
 Create documentation and its makefiles (for linux and win) using sphinx (inspired by https://github.com/quantopian/zipline):
 
  ☐ Create simple example documentation
- ☐ Create makefile for windows
  ☐ Create makefile for linux
  ☐ Update gitignore to ignore built files
  ☐ Improve documentation (take a look at zipline)
 
 Verify Style:
 
- ☐ Add suport to PEP8 style testing (found at https://github.com/jcrocholl/pep8/ also used by zipline)
+ ✔ Display PEP8 style validations @done (13-08-04 14:08)
+ ☐ Automaticaly generate PEP8 style tests (found at https://github.com/jcrocholl/pep8/ also used by zipline)
 
 --- ✄ -----------------------
 
 LONG TERM FEATURES / IDEAS
-
-
---- ✄ -----------------------
-
-BAG OF IDEAS
-
 Calculate and compare with benchmark
 Use spiderweb chart to display grade grouppings http://www.highcharts.com/demo/polar-spider
 Gauge charts can display the risk and the potential
@@ -242,3 +272,9 @@ REFACTORINGS
 Separate each provider in its own file module:
  ✔ Separate each provider in its own file module @done (13-07-02 14:02)
  ✔ Import all modules from a specific folder automatically (maybe use providers as plugins) @done (13-07-02 14:02)
+
+Refactor everything to use only datetime:
+ ☐ Change bovespaParser to create datetime objects
+ ☐ Change everything that uses date objects to use datetime
+ ☐ Change utilitariam methods at dateutils
+ ☐ Avaliate creating utilitariam method that checks the use of date and makes conversions to datetime if needed

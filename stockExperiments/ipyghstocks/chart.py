@@ -3,17 +3,14 @@
 
 from IPython.display import HTML as export
 import random
-import string
 from ipyghstocks import options as options
 
 
 def plot(configuration):
     cid = _generate_id()
-    html = (
-            _generate_container_html(cid) +
-            _generate_javascript(cid, configuration.json(cid) if isinstance(configuration, options.Options) else configuration) +
-            _importLibs(cid)
-           )
+    html = (_generate_container_html(cid) +
+            _generate_javascript(cid, configuration.json() if isinstance(configuration, options.Options) else configuration) +
+            _importLibs(cid))
     return export(html)
 
 
@@ -26,13 +23,13 @@ def _generate_container_html(container_id):
 
 
 def _generate_javascript(container_id, code):
-    return string.Template(r'''
-                            <script>
-                                function draw${cid}() {
-                                    window.chart = new Highcharts.StockChart(${code});
-                                }
-                            </script>
-                           ''').substitute(cid=container_id, code=code)
+    return '''
+           <script>
+               function draw%s() {
+                   $('#%s').highcharts('StockChart', %s);
+               }
+           </script>
+           ''' % (container_id, container_id, code)
 
 
 def _importLibs(container_id):

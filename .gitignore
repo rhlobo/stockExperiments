@@ -1,11 +1,11 @@
 ### Compiled source
+*.py[cod]
 *.com
 *.class
 *.dll
 *.exe
 *.o
 *.so
-*.py[cod]
 
 ### Distribution temporary files
 *.egg
@@ -14,9 +14,13 @@ dist
 build
 eggs
 parts
+var
 sdist
 develop-eggs
 .installed.cfg
+lib
+lib64
+__pycache__
 setup.cfg
 pip-log.txt
 
@@ -54,6 +58,9 @@ Thumbs.db
 ### Output files
 /output/
 /code.report
+
+### Cache files
+/data/cache
 
 ### Personal configurations
 /.codeintel

@@ -13,7 +13,7 @@ def processingtask_factory(instance, dependencies, *args, **kwargs):
     return DataFrameDatasourceTask(instance, dependencies, *args, **kwargs)
 
 
-class DatasourceTask(object):
+class SimpleDatasourceTask(object):
 
     def __init__(self, instance, dependencies):
         self._instance = instance

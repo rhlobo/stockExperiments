@@ -23,7 +23,7 @@ def assert_datasource_correctness_using_datafiles(test_instance, symbol, start, 
         class DatasourceMock(object):
 
             def evaluate(self, context, symbol, start=None, end=None):
-                print 'Mocked datasource; using "%s"' % data_file
+                logData(data_file, data)
                 return data
 
         return DatasourceMock
@@ -45,10 +45,18 @@ def assert_datasource_correctness_using_datafiles(test_instance, symbol, start, 
     actual = instances.data_engine.get(tested_reference).process(symbol, start, end)
     expected = get_dataframe_from_csv(test_file, expected_result_file, test_filename_to_data_dir_function=fileutils.get_commum_test_data_dir)
 
-    print actual.dropna().tail()
-    print expected.dropna()
+    logData('actual', actual.dropna())
+    logData('expected', expected.dropna())
 
     assert_dataframe_almost_equal(expected, actual)
+
+
+def logData(description, dataframe):
+    title = description + ' ' + ((80 - len(description) - 1) * '-')
+    size = len(dataframe.index)
+    start = '---' if size is 0 else dataframe.index[0]
+    end = '---' if size is 0 else dataframe.index[-1]
+    print '[ %s : %s ] \t ~ \t %i \t\t > \t %s' % (start, end, size, title)
 
 
 class DatasourceTestCase(unittest.TestCase):

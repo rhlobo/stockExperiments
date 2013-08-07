@@ -32,6 +32,6 @@ def _generate_for_profile(source_reference, fast_period, slow_period, signal_per
                                                     signalperiod=signal_period)
             return pandas.DataFrame({
                 "macd": macd,
-                "macdsignal": macdsignal,
-                "macdhist": macdhist
+                "signal": macdsignal,
+                "histogram": macdhist
             }, index=df_source.index).dropna()
