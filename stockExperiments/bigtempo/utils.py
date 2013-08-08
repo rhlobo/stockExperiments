@@ -43,8 +43,3 @@ def slice(slicable, start=None, end=None):
     if end:
         return slicable[:end]
     return slicable
-
-
-def assert_dataframe_almost_equal(expected, actual, margin=0.0000000001):
-    tmp = ((expected.dropna() - actual.dropna()).abs() < margin)
-    assert tmp.all().all()

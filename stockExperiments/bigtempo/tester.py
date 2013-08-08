@@ -99,7 +99,7 @@ def _assert_datasource_correctness_using_datafiles(engine, reference, symbol, st
     logger.log('expected', expected)
 
     try:
-        utils.assert_dataframe_almost_equal(expected, actual)
+        _assert_dataframe_almost_equal(expected, actual)
     except Exception, e:
         logger.print_summary()
         raise e
@@ -117,3 +117,8 @@ def _create_mock_datasource(mock_reference, mock_data_file, logger):
             return data
 
     return DatasourceMock
+
+
+def _assert_dataframe_almost_equal(expected, actual, margin=0.0000000001):
+    tmp = ((expected.dropna() - actual.dropna()).abs() < margin)
+    assert tmp.all().all()
