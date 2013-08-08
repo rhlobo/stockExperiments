@@ -46,8 +46,8 @@ class DataFrameDatasourceTask(object):
     def _evaluate_datasource_dependencies(self, symbol, start=None, end=None):
         result = {}
         for reference, dependency in self._dependencies.iteritems():
-            newStart = None if not start else dateutils.relative_working_day(-self._lookback_period, start)
-            result[reference] = dependency.process(symbol, newStart, end)
+            new_start = None if not start else evaluate_loopback_period(self._lookback_period, start)
+            result[reference] = dependency.process(symbol, new_start, end)
         return result
 
 
@@ -58,3 +58,7 @@ class DatasourceContext(object):
 
     def dependencies(self, reference=None):
         return self._dependencies.get(reference) if reference else self._dependencies
+
+
+def evaluate_loopback_period(lookback_period, date):
+    return dateutils.relative_working_day(-lookback_period, date)

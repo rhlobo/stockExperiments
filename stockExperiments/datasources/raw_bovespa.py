@@ -15,7 +15,7 @@ class RawBovespa(object):
         self._dataFrameMap = None
 
     def evaluate(self, context, symbol, start=None, end=None):
-        result = self._get_dataFrameMap().get(symbol)
+        result = self._lazyload_dataFrameMap().get(symbol)
 
         if start and end:
             return result[start:end]
@@ -26,7 +26,7 @@ class RawBovespa(object):
 
         return result
 
-    def _get_dataFrameMap(self):
+    def _lazyload_dataFrameMap(self):
         if not self._dataFrameMap:
             self._dataFrameMap = cotahist.CotahistImporter(config.DATA_DIR).getDataFrameMap()
         return self._dataFrameMap
