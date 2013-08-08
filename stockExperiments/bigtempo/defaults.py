@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
-import util.dateutils as dateutils
+import pandas
+import datetime
+
 import bigtempo.utils as utils
 
 
@@ -32,6 +34,7 @@ class DataFrameDatasourceTask(object):
     def __init__(self, instance, dependencies, lookback_period=0):
         self._instance = instance
         self._dependencies = dependencies
+        # TODO: Remove lookback period from this object, read it from the instance instead
         self._lookback_period = lookback_period
 
     def process(self, symbol, start=None, end=None):
@@ -46,6 +49,7 @@ class DataFrameDatasourceTask(object):
     def _evaluate_datasource_dependencies(self, symbol, start=None, end=None):
         result = {}
         for reference, dependency in self._dependencies.iteritems():
+            # TODO: Pass freq on to this object, read it from the instance instead
             new_start = None if not start else evaluate_loopback_period(self._lookback_period, start)
             result[reference] = dependency.process(symbol, new_start, end)
         return result
@@ -60,5 +64,26 @@ class DatasourceContext(object):
         return self._dependencies.get(reference) if reference else self._dependencies
 
 
-def evaluate_loopback_period(lookback_period, date):
-    return dateutils.relative_working_day(-lookback_period, date)
+def evaluate_loopback_period(lookback_period, date, freq='B'):
+    if freq == 'B':
+        lookback_period = int(lookback_period * 1.05)
+    lookback_period += 1
+
+    return relative_period(-lookback_period, date, freq)
+
+
+def relative_period(periods, date=None, freq='B'):
+    business_day = equivalent_business_day() if not date else equivalent_business_day(date)
+    #return business_day + (periods * pandas.tseries.offsets.BDay())
+    return (pandas.Period(business_day, freq=freq) + periods).to_timestamp()
+
+
+def equivalent_business_day(date=None):
+    if not date:
+        date = datetime.datetime.today().replace(hour=0,
+                                                 minute=0,
+                                                 second=0,
+                                                 microsecond=0)
+
+    isoweekday = date.isoweekday()
+    return date if isoweekday <= 5 else date - datetime.timedelta(isoweekday - 5)
