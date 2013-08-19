@@ -10,24 +10,24 @@ import bovespaparser.bovespaparser as bvparser
 class CotahistImporter(object):
 
     def __init__(self, s_data_dir):
-        self.d_dataFrame = {}
+        self.dataFrameMap = {}
 
-        c_dataMap = structutils.LazyDict(structutils.ListFactory())
+        dataMap = structutils.LazyDict(structutils.ListFactory())
         mapping = [("open", 1), ("high", 2), ("low", 3), ("close", 4), ("volume", 5)]
 
-        for s_symbol, date, f_open, f_min, f_max, f_close, i_vol in _import_data(_get_cotahist_file_paths(s_data_dir)):
-            c_symbolData = c_dataMap.get(s_symbol)
-            c_symbolData.append([date, f_open, f_max, f_min, f_close, i_vol])
+        for symbol, datetime, f_open, f_min, f_max, f_close, volume in _import_data(_get_cotahist_file_paths(s_data_dir)):
+            c_symbolData = dataMap.get(symbol)
+            c_symbolData.append([datetime, f_open, f_max, f_min, f_close, volume])
 
-        for s_symbol in c_dataMap.keys():
-            c_dataMap.get(s_symbol).sort()
-            ll_data = zip(*c_dataMap.get(s_symbol))
+        for symbol in dataMap.keys():
+            dataMap.get(symbol).sort()
+            ll_data = zip(*dataMap.get(symbol))
             ldt_index = ll_data[0]
             ts_dict = dict((s_name, pandas.TimeSeries(ll_data[i_columnIndex], index=ldt_index, name=s_name)) for s_name, i_columnIndex in mapping)
-            self.d_dataFrame[s_symbol] = pandas.DataFrame(ts_dict, columns=['open', 'high', 'low', 'close', 'volume'])
+            self.dataFrameMap[symbol] = pandas.DataFrame(ts_dict, columns=['open', 'high', 'low', 'close', 'volume'])
 
     def getDataFrameMap(self):
-        return self.d_dataFrame
+        return self.dataFrameMap
 
 
 def _import_data(ls_filenames):

@@ -129,25 +129,6 @@ CURRENT BACKLOG:
 	#stockExperiments/datasources/point .py
 	 ☐ point validates buy order out of period range
 
-	Publish bigtempo:
-		Extract bigtempo:
-		 ☐ Remove bigtempo dependencies
-		 ☐ Create new repo for bigtempo
-		 ☐ Extract bigtempo
-		Document bigtempo:
-			☐ Create readme
-			☐ Document dependencies
-			☐ Create example usages
-			☐ Create project backlog (features, refactorings, source, documentation, installation, support, marketing, ...)
-		Document source files:
-			☐ Name
-			☐ Description
-			☐ Logic overview
-			☐ big-O complexity
-		Make it usable:
-			☐ Create setup.py
-			☐ Publish to pypi
-
 	Organize the project:
 	 ☐ Import bigtempo into project
 	 ☐ Remove unecessary methods
