@@ -1,10 +1,11 @@
 Bottleneck==0.6.0
-Cython==0.18
+Cython==0.19.1
 Pygments==1.6
 Scrapy==0.16.5
 TA-Lib==0.4.5
 Twisted==13.0.0
 argparse==1.2.1
+bigtempo==0.37.7
 bovespaparser==0.4
 coverage==3.6
 h5py==2.1.2
