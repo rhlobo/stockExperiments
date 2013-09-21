@@ -12,3 +12,6 @@ A series of experiments aiming to put python into practice in the exploration of
 
 
 [1]: http://how.i.drycode.it/search/label/stockExperiments
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rhlobo/stockexperiments/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
