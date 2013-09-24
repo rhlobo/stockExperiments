@@ -1,0 +1,21 @@
+#!/bin/bash
+
+
+source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.base"
+
+profile() {
+	local PSTATSFILE IMGFILE
+	PSTATSFILE="profile/profile.pstats"
+	IMGFILE="profile/profile.png"
+	#IMGFILE="profile/profile_$(date +%F_%T | sed 's/[\s:]//g').png"
+
+	mkdir -p "profile"
+	python -m cProfile -s cumulative -o "${PSTATSFILE}" "${PROJECT_NAME}/experiments.py"
+	python bin/util/gprof2dot.py -f pstats "${PSTATSFILE}" | dot -Tpng -o "${IMGFILE}"
+	python bin/util/displayprofilestats.py "${PSTATSFILE}"
+}
+
+
+cd "${PROJECT_LOCATION}"
+profile
+cd "${CURRDIR}"

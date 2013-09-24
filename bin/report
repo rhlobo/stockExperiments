@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+OUTPUT_FILE='code.report'
+source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.base"
+
+pep8_style_check() {
+	echo "PEP8 CODE STYLE CHECK" >> "${OUTPUT_FILE}"
+	echo "--------------------------------------------------------------------------------" >> "${OUTPUT_FILE}"
+	find "${PROJECT_NAME}" -type f -name "*.py" -exec pep8 --first --max-line-length=160 {}  >> "${OUTPUT_FILE}" \;
+	echo >> "${OUTPUT_FILE}"	
+}
+
+pep8_statistics() {
+	echo "PEP8 STATISTICS" >> "${OUTPUT_FILE}"
+	echo "#     Err  Description" >> "${OUTPUT_FILE}"
+	echo "--------------------------------------------------------------------------------" >> "${OUTPUT_FILE}"
+	pep8 --statistics --max-line-length=160 -qq "./${PROJECT_NAME}" | sort -nr >> "${OUTPUT_FILE}"
+	echo >> "${OUTPUT_FILE}"
+}
+
+line_count() {
+	local n
+
+	echo "LINE COUNT" >> "${OUTPUT_FILE}"
+	echo "--------------------------------------------------------------------------------" >> "${OUTPUT_FILE}"
+	for n in $(find "${PROJECT_NAME}" -name "*.py")
+	do 
+		echo "$(cat $n | wc -l)  >  $n" >> "${OUTPUT_FILE}"
+	done
+	cat `find "${PROJECT_NAME}" -name "*.py" -print` | wc -l >> "${OUTPUT_FILE}"
+	echo >> "${OUTPUT_FILE}"
+}
+
+
+cd "${PROJECT_LOCATION}"
+echo "" > "${OUTPUT_FILE}"
+pep8_style_check
+pep8_statistics
+line_count
+cd "${CURRDIR}"
+
+less "${OUTPUT_FILE}"

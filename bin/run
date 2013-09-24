@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.base"
+
+cd "${PROJECT_LOCATION}"
+echo
+echo "RUNNING"
+echo "--------------------------------------------------------------------------------"
+python -m trace --count -s "${PROJECT_NAME}/experiments.py" $@
+echo
+
+find . -type f -name "*.pyc" -exec rm -f {} \;
+cd "${CURRDIR}"

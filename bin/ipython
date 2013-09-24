@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.base"
+
+cd "${PROJECT_LOCATION}/ipy-notebooks"
+ipython notebook --pylab inline
+cd "${CURRDIR}"

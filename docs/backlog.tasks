@@ -1,0 +1,82 @@
+ARCHIVED:
+	Finish current tests:
+	 ✔ Test existing byproduct providers using fake data @done (13-04-27 18:26)
+
+	Create an MACD provider factory:
+	 ✔ Create an MACD provider prototype @done (13-04-27 20:06)
+	 ✔ Create an single MACD provider @done (13-04-29 13:43)
+	 ✔ Test the created MACD provider @done (13-04-29 21:24)
+
+	#stockExperiments/bigtempo/core.py
+	DatasourceEngine Tests:
+	 ✔ tags being union of infered and declared @done (13-07-02 20:43)
+	 ✔ tags method returns reference selection @done (13-07-02 20:47)
+	 ✔ for_each delegates to TagRegistrationManager register @done (13-07-02 21:03)
+	 ✔ for_synched delegates to TagRegistrationManager register_synched @done (13-07-02 21:03)
+
+	#stockExperiments/bigtempo/tagselection.py
+	TagRegistrationManager Tests:
+	 ✔ infere_tags_for creates tag for reference @done (13-07-02 21:21)
+	 ✔ infere_tags_for creates tag for dependencies tags (with {}) @done (13-07-02 21:59)
+	 ✔ infere_tags_for creates tag for dependencies references (with {}) @done (13-07-02 21:59)
+	 ✔ register method does not call listener when there is no reference in selection @done (13-07-03 14:12)
+	 ✔ register method does call listener for every reference in selection @done (13-07-03 14:12)
+	 ✔ register method does call listener for every combination reference in given selections @done (13-07-03 14:12)
+	 ✔ register method does call listener for every new reference that matches selection @done (13-07-03 20:46)
+	 ✔ register method does call listener for every combination reference formed by new references that matches given selections @done (13-07-03 20:46)
+	 ✔ register_synched method does not call listener when there is no reference in selection @done (13-07-03 20:59)
+	 ✔ register_synched does call listener for every reference in selection @done (13-07-03 21:00)
+	 ✔ register_synched method does call listener for every synched combination reference in given selections @done (13-07-04 21:27)
+
+	Integration Tests:
+		use cases: tag selections:
+		 ✔ nothing results in nothing @done (13-07-08 13:17)
+		 ✔ unknown tag results in nothing @done (13-07-08 13:17)
+		 ✔ tag selector results in all occurences of that tag @done (13-07-08 13:23)
+		 ✔ reference as selector results in one ocurrence @done (13-07-08 13:17)
+		 ✔ multiple tag selector results all references that have that tags in common @done (13-07-08 13:34)
+		 ✔ getting references that have certain tags but do not have others @done (13-07-08 13:38)
+		 ✔ getting all 'points' that are based on a certain raw tipe @done (13-07-08 20:44)
+		 ✔ getting all 'points' that are not based on a certain raw tipe @done (13-07-08 21:00)
+		 ✔ finding every reference that directly or indirectly uses certain datasource as dependency @done (13-07-08 21:04)		
+
+	Improve Datasource tests:
+	 ✔ Create test generator to test each datasource for returning correct interval @done (13-08-06 13:54)
+	 ✔ Create test generator to test each datasource for returning correct subinterval @done (13-08-06 13:54)
+
+Improve datasources:
+ ✔ Set provider reference (substitute typifyes) @done (13-08-04 14:10)
+ ✔ Specify provider dependencies @done (13-08-04 14:10)
+	 ✔ Capture dependencies specification @done (13-08-04 14:10)
+	 ✔ Inject locator dependencies @done (13-08-04 14:10)
+ ✔ ?? Use decorator to register to locator @done (13-08-04 14:11)
+ ✔ Refactored locators into engine @done (13-08-04 14:11)
+
+--- ✄ -----------------------
+
+DOCUMENTATION AND STYLE
+
+Document every function, class and methods:
+
+ ☐ Name
+ ☐ Description
+ ☐ Logic overview
+ ☐ big-O complexity
+ ☐ Resulting columns
+ ☐ Column descriptions
+ ☐ Usage
+
+Create documentation and its makefiles (for linux and win) using sphinx (inspired by https://github.com/quantopian/zipline):
+
+ ☐ Create simple example documentation
+ ☐ Create makefile for linux
+ ☐ Update gitignore to ignore built files
+ ☐ Improve documentation (take a look at zipline)
+
+Verify Style:
+
+ ✔ Display PEP8 style validations @done (13-08-04 14:08)
+
+Separate each provider in its own file module:
+ ✔ Separate each provider in its own file module @done (13-07-02 14:02)
+ ✔ Import all modules from a specific folder automatically (maybe use providers as plugins) @done (13-07-02 14:02)

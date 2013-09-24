@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+export TESTTYPE=${1:-fast}
+source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.base"
+
+run_tests() {
+	echo "TESTS"
+	echo "--------------------------------------------------------------------------------"
+	nosetests -v --with-coverage --cover-erase --cover-inclusive --cover-branches --cover-package="${PROJECT_NAME}" --cover-html --cover-html-dir="../coverage/" -w "${PROJECT_NAME}"
+	echo
+}
+
+pep8_style_check() {
+	echo "PEP8 CODE STYLE CHECK"
+	echo "--------------------------------------------------------------------------------"
+	find "${PROJECT_NAME}" -type f -name "*.py" -exec pep8 --first --max-line-length=160 {} \;
+	echo
+}
+
+pep8_statistics() {
+	echo "PEP8 STATISTICS"
+	echo "#     Err  Description"
+	echo "--------------------------------------------------------------------------------"
+	pep8 --statistics --max-line-length=160 -qq "./${PROJECT_NAME}" | sort -nr
+	echo
+}
+
+
+cd "${PROJECT_LOCATION}"
+run_tests
+pep8_style_check
+pep8_statistics
+cd "${CURRDIR}"
