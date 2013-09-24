@@ -7,7 +7,7 @@ source "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.base"
 run_tests() {
 	echo "TESTS"
 	echo "--------------------------------------------------------------------------------"
-	nosetests -v --with-coverage --cover-erase --cover-inclusive --cover-branches --cover-package="${PROJECT_NAME}" --cover-html --cover-html-dir="../coverage/" -w "${PROJECT_NAME}"
+	nosetests --with-coverage --cover-erase --cover-inclusive --cover-branches --cover-package="${PROJECT_NAME}" --cover-html --cover-html-dir="../coverage/" -w "${PROJECT_NAME}"
 	echo
 }
 
