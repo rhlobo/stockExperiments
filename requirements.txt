@@ -1,7 +1,7 @@
 Bottleneck==0.6.0
 Cython==0.19.1
 Pygments==1.6
-Scrapy==0.16.5
+Scrapy==1.8.1
 TA-Lib==0.4.5
 Twisted==13.0.0
 argparse==1.2.1
